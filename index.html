@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="Data.Gui.js"></script>
+    <title>DataGui Test</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none;   /* Chrome/Safari/Opera */
+            -khtml-user-select: none;    /* Konqueror */
+            -moz-user-select: none;      /* Firefox */
+            -ms-user-select: none;       /* Internet Explorer/Edge */
+            user-select: none;
+        }
+
+        #DataGuiTest {
+            width: 250px;
+            color: white;
+            font-size: 11px;
+            font-family: 'Lucida Grande';
+            font-style: normal;
+            position: absolute;
+            top: 0px;
+            right: 50px;
+        }
+        input[type=text],
+        input[type=button],
+        input[type=range],
+        input[type=number] {
+            color: mediumturquoise;
+            background: #303030;
+            outline: none;
+            border: 0;
+            margin-top: 0px;
+            padding: 3px;
+            /*float: right;*/
+        }
+        input[type=button] {
+            outline: dotted;
+        }
+
+        ul {
+            margin: 0;
+            list-style: none;
+            border: 0;
+        }
+        li {
+            padding: 5px 5px 5px 5px;
+            margin: 0px;
+            list-style: none;
+            background-color: #161616;
+            border-left: solid 3px #161616;
+            border-bottom: solid 1px #323232;
+            line-height: 20px;
+        }
+        li>.content {
+            background-color: #161616;
+            width: 100%;
+        }
+        li>.content>.node-name {
+            background-color: #161616;
+        }
+        ul.children {
+            padding: 0;
+            margin: 0;
+            border: 0;
+        }
+        /* type mods */
+        ul.root {
+            margin: 0;
+            padding: 0;
+        }
+        ul.root>.content {
+            height: 10px;
+            background-color: mediumturquoise;
+        }
+        /*
+            gear icon
+            background: black url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAANCAYAAAB/9ZQ7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQJJREFUeNpiYKAU/P//PwGIC/ApCABiBSAW+I8AClAcgKxQ4T9hoMAEUrxx2QSGN6+egDX+/vWT4e7N82AMYoPAx/evwWoYoSYbACX2s7KxCxzcsezDh3evFoDEBYTEEqycggWAzA9AuUSQQgeYPa9fPv6/YWm/Acx5IPb7ty/fw+QZblw67vDs8R0YHyQhgObx+yAJkBqmG5dPPDh1aPOGR/eugW0G4vlIoTIfyFcA+QekhhHJhPdQxbiAIguMBTQZrPD7108M6roWYDFQiIAAv6Aow/1bFwXgis+f2LUAynwoIaNcz8XNx3Dl7MEJUDGQpx9gtQ8YCueB+D26OECAAQDadt7e46D42QAAAABJRU5ErkJggg==) 2px 2px no-repeat;
+
+        */
+
+        li.range>.content .value {
+            width: 30px;
+            float: right;
+            margin-left: 3px;
+        }
+        li.range>.content .slider-track {
+            display: inline-block;
+            float: right;
+            width: 110px;
+            height: 20px;
+            overflow: hidden;
+            background-color: #303030;
+        }
+        li.range>.content .slider-level {
+            background-color: chartreuse;
+            height: 20px;
+        }
+
+        li.folder {
+            padding: 0px 0px 0px 5px;
+            border: 0;
+            background-color: transparent;
+            border-bottom: solid 1px chartreuse;
+            border-top: solid 1px chartreuse;
+            height: auto;
+        }
+        li.folder>.content {
+            width: calc(100% + 5px);
+            margin-left: -5px;
+            height: 27px;
+            line-height: 27px;
+        }
+        li.folder>.content:before {
+            content: "\2000 \2000 \2000";
+            background: black url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlGIWqMCbWAEAOw==) 2px 2px no-repeat;
+        }
+        li.folder.close>.content:before {
+            background-image: url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlI+hKgFxoCgAOw==);
+        }
+        li.folder.close>.children {
+            display: none;
+        }
+        /* Value*/
+        li.value>.content>.value-side {
+            float: right;
+        }
+        li.value>.content>.value-side>.value {
+            width: 110px;
+        }
+        li.button>.content {
+            text-align: center;
+        }
+        li.button>.content {
+            font-weight: bold;
+        }
+        li.monitor>.content>.canvas {
+            width: inherit;
+        }
+    </style>
+</head>
+<body>
+<div id="DataGuiTest"></div>
+<script type="text/javascript">
+    var testObj = {
+        run: 1,
+        value: 42,
+        bool: true,
+        testString: "servus",
+        func: function() {
+            console.log("button function");
+        },
+    }
+
+    setInterval(function () {
+        if (testObj.bool) {
+            var t = Date.now();
+            testObj.run = Math.sin(t/1000);
+        } else {
+            testObj.run = 1;
+        }
+
+//      testObj.run = window.performance.memory.usedJSHeapSize;
+
+    }, 16)
+    var gui = DataGui.create(document.getElementById("DataGuiTest"));
+    gui.add("Node", "Blank Node");
+    gui.add("Value", "Test string", testObj, "testString").color("red");
+    gui.add("Value", "Test number", testObj, "value");
+    gui.add("Value", "Test boolean", testObj, "bool");
+    gui.add("Range", "Test slider", testObj, "value");
+    gui.add("Button", "Test button", testObj, "func");
+    gui.add("Button", "Test anonym button", function() {
+        console.log("anonym button");
+    });
+    gui.add("Monitor", "live", testObj, "run").listen();
+    gui.add("Obj", "obj", testObj);
+
+    gui.updateAll();
+
+    var test = [];
+
+</script>
+</body>
+</html>
