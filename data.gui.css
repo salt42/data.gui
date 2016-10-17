@@ -1,5 +1,5 @@
 
-* {
+.DataGui * {
     padding: 0;
     margin: 0;
     -webkit-touch-callout: none; /* iOS Safari */
@@ -10,7 +10,7 @@
     user-select: none;
 }
 
-#DataGuiTest {
+.DataGui {
     width: 250px;
     color: white;
     font-size: 11px;
@@ -20,10 +20,10 @@
     top: 0px;
     right: 50px;
 }
-input[type=text],
-input[type=button],
-input[type=range],
-input[type=number] {
+.DataGui input[type=text],
+.DataGui input[type=button],
+.DataGui input[type=range],
+.DataGui input[type=number] {
     color: mediumturquoise;
     background: #303030;
     outline: none;
@@ -32,7 +32,7 @@ input[type=number] {
     padding: 3px;
     /*float: right;*/
 }
-input[type=button] {
+.DataGui input[type=button] {
     outline: dotted;
 }
 

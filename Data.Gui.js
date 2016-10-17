@@ -509,6 +509,7 @@
 	window.dataGui.nodeTypes["Obj"] 	= Obj;
 
 	window.dataGui.create = function(parentDom) {
+		parentDom.classList.add('DataGui');
 		var r = new Root(parentDom);
 		return r;
 	};
