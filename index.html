@@ -30,7 +30,7 @@
 //      testObj.run = window.performance.memory.usedJSHeapSize;
 
     }, 16)
-    var gui = DataGui.create(document.getElementById("DataGuiTest"));
+    var gui = dataGui.create(document.getElementById("DataGuiTest"));
     gui.add("Node", "Blank Node");
     gui.add("Value", "Test string", testObj, "testString").color("red");
     gui.add("Value", "Test number", testObj, "value");

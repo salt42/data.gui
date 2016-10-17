@@ -507,8 +507,8 @@
 
 	window.dataGui.nodeTypes["Monitor"] = Monitor;
 	window.dataGui.nodeTypes["Obj"] 	= Obj;
-	
-	window.DataGui.create = function(parentDom) {
+
+	window.dataGui.create = function(parentDom) {
 		var r = new Root(parentDom);
 		return r;
 	};
