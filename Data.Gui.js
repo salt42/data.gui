@@ -497,27 +497,17 @@
 	}
 
 
-	window.DataGui = DataGui;
-	window.DataGui.nodeTypes = {};
-	window.DataGui.nodeTypes["Node"] 	= Node;
-	window.DataGui.nodeTypes["Folder"] 	= Folder;
-	window.DataGui.nodeTypes["Value"] 	= Value;
-	window.DataGui.nodeTypes["Range"] 	= Range;
-	window.DataGui.nodeTypes["Button"] 	= Button;
+	window.dataGui = DataGui;
+	window.dataGui.nodeTypes = {};
+	window.dataGui.nodeTypes["Node"] 	= Node;
+	window.dataGui.nodeTypes["Folder"] 	= Folder;
+	window.dataGui.nodeTypes["Value"] 	= Value;
+	window.dataGui.nodeTypes["Range"] 	= Range;
+	window.dataGui.nodeTypes["Button"] 	= Button;
 
-	window.DataGui.nodeTypes["Monitor"] = Monitor;
-	window.DataGui.nodeTypes["Obj"] 	= Obj;
-
-
-	//@todo add button
-
-	//string
-	//boolean
-	//number // NaN == number
-
-	//function
-	//object // null == object
-
+	window.dataGui.nodeTypes["Monitor"] = Monitor;
+	window.dataGui.nodeTypes["Obj"] 	= Obj;
+	
 	window.DataGui.create = function(parentDom) {
 		var r = new Root(parentDom);
 		return r;
