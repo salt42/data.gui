@@ -68,7 +68,9 @@
 			return node;
 		}
 		remove() {
-			//@todo implement
+			var index = this._parent._childs.indexOf(this);
+			this._parent._childs.splice(index, 1);
+			this._parent._dom.removeChild(this._dom);
 		}
 		reDrawChilds() {
 			//clear
@@ -94,12 +96,6 @@
 			this._dom.style.borderLeftColor = this._color;
 			return this;
 		}
-		// get prop() {
-		// 	return 'getter';
-		// }
-		// set prop(value) {
-		// 	console.log('setter: '+value);
-		// }
 	}
 
 	class Root extends Node {
