@@ -47,8 +47,18 @@
 		update() {
 			//this.color(this._color);
 		}
+		updateAll() {
+			var rec = function(node) {
+				node.update();
+				if (node._leaf) return;
+				for (var i = 0; i < node._childs.length; i++) {
+					rec(node._childs[i]);
+				}
+			}
+			rec(this);
+		}
 		add(type, ...args) {
-			if (this._leaf) console.error("Leaf nodes can't have child!");
+			if (this._leaf) console.error("Leaf nodes can't have childes!");
 			if (!(type in DataGui.nodeTypes)) console.error("No NodeType '%s' found!", type);
 			var node = new DataGui.nodeTypes[type](this, ...args);
 				node.createDom();
@@ -105,15 +115,6 @@
 		}
 		remove() {
 			//@todo remove hole DataGui instance
-		}
-		updateAll() {
-			var rec = function(node) {
-				node.update();
-				for (var i = 0; i < node._childs.length; i++) {
-					rec(node._childs[i]);
-				}
-			}
-			rec(this);
 		}
 	}
 	class Folder extends Node {
