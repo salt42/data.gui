@@ -193,7 +193,7 @@
 			value.addEventListener("change", function(e) {
 				this._object[this._propertyName] = e.target.value;
 			}.bind(this));
-
+			this.update();
 		}
 	}
 	class Range extends Value {
