@@ -70,7 +70,7 @@
 		remove() {
 			var index = this._parent._childs.indexOf(this);
 			this._parent._childs.splice(index, 1);
-			this._parent._dom.removeChild(this._dom);
+			this._parent._dom.querySelector(".children").removeChild(this._dom);
 		}
 		reDrawChilds() {
 			//clear
