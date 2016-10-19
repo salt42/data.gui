@@ -132,6 +132,7 @@
 			this._dom.querySelector(".content").addEventListener("click", function(e) {
 				this.parentNode.classList.toggle("close")
 			});
+			this.update();
 		}
 	}
 
@@ -251,6 +252,7 @@
 				document.addEventListener("mousemove", onMouseMove);
 				document.addEventListener("mouseup", onMouseUp);
 			});
+			this.update();
 		}
 		update() {
 			this.level = this._object[this._propertyName] / this.max;
